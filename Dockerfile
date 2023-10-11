@@ -5,11 +5,12 @@ ARG INSTALL_JDK=false
 COPY SHIR C:/SHIR/
 
 #Install ODBC DataVirtuality Driver
-RUN Write-Host 'Downloading ODBC Driver' ; \  
-    $MsiFile = $env:Temp + '\datavirtualityODBC.msi' ; \
-    (New-Object Net.WebClient).DownloadFile('https://github.com/ncqa-org/shir/blob/main/SHIR/datavirtualityODBC.msi', $MsiFile) ; \
-    Write-Host 'Installing ODBCDriver' ; \
-    Start-Process msiexec.exe -ArgumentList '/i', $MsiFile, '/quiet', '/norestart' -NoNewWindow -Wait
+
+WORKDIR  C:\\SHIR
+
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+RUN Start-Process 'C:\SHIR\datavirtualityODBC.msi' '/quiet /norestart' -PassThru | Wait-Process;
 
 
 #Build

@@ -1,1 +1,1 @@
-msiexec.exe /i C:\SHIR\datavirtualityODBC.msi /quiet /norestart
+msiexec.exe /i C:\temp\datavirtualityODBC.msi /quiet /norestart

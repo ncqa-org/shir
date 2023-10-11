@@ -5,13 +5,6 @@ ARG INSTALL_JDK=false
 COPY SHIR C:/SHIR/
 ADD datavirtualityODBC.msi "C:\temp\"
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
-#Copy installers
- # RUN 
-  # Start-Process 'msiexec' -ArgumentList '/i c:\temp\datavirtualityODBC.msi /quiet /norestart /log c:\temp\installodbc.log'; \
- #  Start-Sleep -s 30 ;\
-#  Remove-Item c:\temp\*.msi -force
 
 
 RUN ["powershell", "C:/SHIR/build.ps1"]

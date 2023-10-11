@@ -8,9 +8,9 @@ COPY SHIR C:/SHIR/
 RUN ["powershell", "C:/SHIR/build.ps1"]
 
 #Install ODBC DataVirtuality Driver
-SHELL [“powershell”, “-Command”, “$ErrorActionPreference = ‘Stop’; $ProgressPreference = ‘SilentlyContinue’;”]
-RUN Start-Process “C:\SHIR\datavirtualityODBC.msi” ‘/install /quiet /norestart’ -Wait; `
-Remove-Item -Force datavirtualityODBC.msi
+$msiPath = "C:/SHIR/datavirtualityODBC.msi"
+ $arguments = "/i `"$msiPath`" /quiet /norestart"
+ Start-Process msiexec.exe -ArgumentList $arguments -Wait
 
 #Install SHIR
 ENTRYPOINT ["powershell", "C:/SHIR/setup.ps1"]

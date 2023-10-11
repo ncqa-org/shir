@@ -4,13 +4,13 @@ ARG INSTALL_JDK=false
 # Download the latest self-hosted integration runtime installer into the SHIR folder
 COPY SHIR C:/SHIR/
 
-#Build
-RUN ["powershell", "C:/SHIR/build.ps1"]
-
 #Install ODBC DataVirtuality Driver
 $msiPath = "C:/SHIR/datavirtualityODBC.msi"
  $arguments = "/i `"$msiPath`" /quiet /norestart"
- Start-Process msiexec.exe -ArgumentList $arguments -Wait
+ Start-Process msiexec.exe -ArgumentList $arguments
+
+#Build
+RUN ["powershell", "C:/SHIR/build.ps1"]
 
 #Install SHIR
 ENTRYPOINT ["powershell", "C:/SHIR/setup.ps1"]

@@ -10,7 +10,7 @@ WORKDIR  C:\\SHIR
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-RUN Start-Process 'C:\SHIR\datavirtualityODBC.msi' '/quiet /norestart' -PassThru | Wait-Process;
+RUN Start-Process 'C:\SHIR\datavirtualityANSI_x64.msi' '/quiet /norestart' -PassThru | Wait-Process;
 
 
 #Build
